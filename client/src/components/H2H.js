@@ -48,7 +48,7 @@ const H2H = () => {
         if (!data) {
           setValues({
             ...values,
-            error: data.error
+            error: 'An error occured'
           })
         } else {
           setValues({

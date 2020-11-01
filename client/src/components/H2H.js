@@ -45,10 +45,10 @@ const H2H = () => {
 
     const loadResults = () => {
       getResults().then(data => {
-        if (data.error) {
+        if (!data) {
           setValues({
             ...values,
-            error: data.error
+            error: 'An error occured'
           })
         } else {
           setValues({

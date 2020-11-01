@@ -15,7 +15,7 @@ if(process.env.NODE_ENV === "production") {
   app.use(express.static('client/build'))
 }
 
-app.get('/api', (req, res) => {
+app.get('/api', (req, res, next) => {
   https.get(`https://apiv2.apifootball.com/?action=get_countries&APIkey=${apiKey.apiKey}`, (resp) => {
     let data = '';
     resp.on('data', (chunk) => {
@@ -34,10 +34,12 @@ app.get('/api', (req, res) => {
         })
       }
     });
+  }).on('error', (err) => {
+    next(new Error(err))
   })
 })
 
-app.post('/api/leagues', (req, res) => {
+app.post('/api/leagues', (req, res, next) => {
   let countryId = req.body.countryId
   https.get(`https://apiv2.apifootball.com/?action=get_leagues&country_id=${countryId}&APIkey=${apiKey.apiKey} `, (resp) => {
     let data = '';
@@ -57,10 +59,12 @@ app.post('/api/leagues', (req, res) => {
         })
       }
     });
+  }).on('error', (err) => {
+    next(new Error(err))
   })
 })
 
-app.post('/api/teams', (req, res) => {
+app.post('/api/teams', (req, res, next) => {
   let leaguesId = req.body.leagueSelect
   https.get(`https://apiv2.apifootball.com/?action=get_teams&league_id=${leaguesId}&APIkey=${apiKey.apiKey} `, (resp) => {
     let data = '';
@@ -82,10 +86,12 @@ app.post('/api/teams', (req, res) => {
         })
       }
     });
+  }).on('error', (err) => {
+    next(new Error(err))
   })
 })
 
-app.post('/api/h2hresult', (req, res) => {
+app.post('/api/h2hresult', (req, res, next) => {
   let firstTeam = req.body.teamSelectA
   let secondTeam = req.body.teamSelectB
   https.get(`https://apiv2.apifootball.com/?action=get_H2H&firstTeam=${firstTeam}&secondTeam=${secondTeam}&APIkey=${apiKey.apiKey}`, (resp) => {
@@ -107,8 +113,15 @@ app.post('/api/h2hresult', (req, res) => {
           error: 'Can not fetch results please select teams'
         })
       }
-    });
+    })
+  }).on('error', (err) => {
+    next(new Error(err))
+  })
+})
 
+app.use((error, req, res, next) => {
+  res.status(500).json({
+    error: 'Error migth be due to your interner connection, or my server is down.'
   })
 })
 

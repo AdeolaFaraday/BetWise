@@ -45,15 +45,15 @@ const H2H = () => {
 
     const loadResults = () => {
       getResults().then(data => {
-        if (!data) {
+        if (data.error) {
           setValues({
             ...values,
-            error: 'An error occured'
+            error: data.error
           })
         } else {
           setValues({
             ...values,
-            country: data.country
+            country: data
           })
           console.log(data.league)
         }
@@ -113,7 +113,7 @@ const H2H = () => {
           setValues({
             ...values,
             loading: false,
-            leagues: data.leagues
+            leagues: data
           })
         }
       })
@@ -136,9 +136,9 @@ const H2H = () => {
           setValues({
             ...values,
             loading: false,
-            teamA: data.teams,
-            teamB: data.teams,
-            teamConst: data.teams
+            teamA: data,
+            teamB: data,
+            teamConst: data
           })
         }
       })
@@ -156,13 +156,13 @@ const H2H = () => {
           setValues({
             ...values,
             loading: false,
-            error: data.error
+            error: data.message
           })
         } else {
           setValues({
             ...values,
             loading: false,
-            result: data.results.firstTeam_lastResults
+            result: data.firstTeam_lastResults
           })
         }
       })
@@ -197,7 +197,7 @@ const H2H = () => {
       <div class="select-league">
         <select class="browser-default custom-select select-league-name" onChange={handleChange('countryId')}>
           <option>Select Country</option>
-          {country.map((a, i) => (
+          {country && country.map((a, i) => (
           <option selected={a.country_id === countryId ? true : false} key={i} value={a.country_id}>{a.country_name}</option>
           ))}
         </select>

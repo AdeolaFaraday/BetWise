@@ -43,15 +43,14 @@ const PreviousScore = () => {
         if (data.error) {
           setValues({
             ...values,
-            loading: false,
-            error: data.error
+            error: data.message,
+            loading: false
           })
         } else {
-          console.log(data)
           setValues({
             ...values,
             loading: false,
-            result: data.results.firstTeam_lastResults
+            result: data.firstTeam_lastResults
           })
         }
       })

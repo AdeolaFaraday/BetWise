@@ -83,6 +83,7 @@ const H2H = () => {
        setValues({
          ...values,
          teamB: newTeamB,
+         result: [],
          teamSelectA: spliceN,
          error: ''
        })
@@ -91,6 +92,7 @@ const H2H = () => {
        setValues({
          ...values,
          teamA: newTeamA,
+         result: [],
          teamSelectB: spliceN,
          error: ''
        })

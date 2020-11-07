@@ -84,7 +84,13 @@ app.post('/api/h2hresult', (req, res) => {
   })
 })
 
+<<<<<<< HEAD
 
 app.listen(8080, () => {
   console.log('App is listem on port 8080')
+=======
+let PORT = process.env.PORT || 8080
+app.listen(PORT, () => {
+  console.log(`App is listen  on port ${PORT}`)
+>>>>>>> 6b8a66ce736c9d6c9d541e1767f38f1cb4d27e9a
 })

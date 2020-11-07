@@ -12,7 +12,7 @@ app.use(cors())
 app.use(bodyParser.json())
 
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static('client/build'))
+  app.use(express.static('../client/video-app/build'))
 }
 
 
@@ -84,8 +84,13 @@ app.post('/api/h2hresult', (req, res) => {
   })
 })
 
-let port = process.env.PORT || 8080
+<<<<<<< HEAD
 
-app.listen(port, () => {
-  console.log(`Server is listen on port ${port}`)
+app.listen(8080, () => {
+  console.log('App is listem on port 8080')
+=======
+let PORT = process.env.PORT || 8080
+app.listen(PORT, () => {
+  console.log(`App is listen  on port ${PORT}`)
+>>>>>>> 6b8a66ce736c9d6c9d541e1767f38f1cb4d27e9a
 })

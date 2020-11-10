@@ -101,7 +101,7 @@ const PreviousScore = () => {
    {predictionMsg()}
    <form>
      <div class="select-league">
-       <input type="text" className="txtb" autoFocus onChange={handleChange} value={teamName} />
+       <input type="text" className="txtb" autoFocus onChange={handleChange} placeholder="Search for teams last results" value={teamName} />
        <button class="btn btn-outline-success responsive" onClick={handleSubmit} type="submit" name="button">Submit</button>
      </div>
    </form>

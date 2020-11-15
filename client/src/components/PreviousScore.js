@@ -5,6 +5,7 @@ import React, {
 import {
   getH2hResult
 } from '../apiMethods';
+import {prediction} from '../util/utilFunction';
 import Result from './Sub-component/Result';
 import Layout from './Layout';
 
@@ -57,28 +58,21 @@ const PreviousScore = () => {
       })
     }
 
-    const prediction = arr => {
-      let drawArr = arr.filter((a) => a.match_hometeam_score == a.match_awayteam_score)
-      let homeArr = arr.filter((a) => a.match_hometeam_name == teamName)
-      let fArr = arr.filter((a) => a.match_awayteam_name == teamName && a.match_awayteam_score > a.match_hometeam_score)
-      let sArr = arr.filter((a) => a.match_hometeam_name == teamName && a.match_hometeam_score > a.match_awayteam_score)
-      let newArr = [...fArr, ...sArr]
-      return `${teamName} has won ${newArr.length / arr.length * 100}% i.e ${newArr.length} of the last ${arr.length} matches &
-      ${sArr.length / homeArr.length * 100}% i.e ${sArr.length} of their last ${homeArr.length} home matches, also drew ${drawArr.length} of their last ${arr.length} matches
-      `
-    }
-
     const errorMsg = () => (
-      error && ( <div  className="msg"><div className = "alert alert-danger error"> <p> {
+      error && (<div className="msg"><div className="alert alert-danger error"> <p> {
         error
-      } </p></div>
+      }</p></div>
       </div>)
     )
 
     const predictionMsg = () => (
-      result.length > 1 && ( <div  className="msg"><div className = "alert alert-warning error"><p><i style={{marginRight:"3px"}} class="fas fa-exclamation-triangle"></i>{prediction(result)}</p></div>
+      result.length > 1 && ( <div  className="msg">
+      <div className = "alert alert-warning error">
+      <p><i style={{marginRight:"3px"}} class="fas fa-exclamation-triangle"></i>{prediction(result, teamName)}</p>
+      </div>
       </div>)
     )
+
 
     const isLoading = () => (
       loading && (

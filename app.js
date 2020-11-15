@@ -12,13 +12,10 @@ app.use(cors())
 app.use(bodyParser.json())
 
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static('client/build'))
-  const path = require('path')
-  app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
-  })
+  app.use(express.static('../client/video-app/build'))
 }
 
+let serverErrMsg = "Error might be due to your internet connection, or my server is down."
 
 app.get('/api', (req, res) => {
   request(`https://apiv2.apifootball.com/?action=get_countries&APIkey=${apiKey.apiKey}`, {
@@ -26,7 +23,7 @@ app.get('/api', (req, res) => {
   }, (err, resp, body) => {
     if (err) {
       return res.status(400).json({
-        error: "Error might be due to your internet connection, or my server is down."
+        error: serverErrMsg
       })
     }
     return res.status(200).json(body)
@@ -40,7 +37,7 @@ app.post('/api/leagues', (req, res) => {
   }, (err, resp, body) => {
     if (err) {
       return res.status(400).json({
-        error: "Error might be due to your internet connection, or my server is down."
+        error: serverErrMsg
       })
     }
     if (body.length > 1) {
@@ -60,7 +57,7 @@ app.post('/api/teams', (req, res) => {
   }, (err, resp, body) => {
     if (err) {
       return res.status(400).json({
-        error: "Error might be due to your internet connection, or my server is down."
+        error: serverErrMsg
       })
     }
     if (body.error) {
@@ -81,7 +78,7 @@ app.post('/api/h2hresult', (req, res) => {
   }, (err, resp, body) => {
     if (err) {
       return res.status(400).json({
-        error: "Error might be due to your internet connection, or my server is down."
+        error: serverErrMsg
       })
     }
     return res.status(200).json(body)

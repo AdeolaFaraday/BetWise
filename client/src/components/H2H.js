@@ -8,6 +8,7 @@ import {
   getTeams,
   getH2hResult
 } from '../apiMethods';
+import {prediction} from '../util/utilFunction';
 import Result from './Sub-component/Result';
 import Layout from './Layout';
 
@@ -99,16 +100,6 @@ const H2H = () => {
      }
    }
 
-   const prediction = arr => {
-     let drawArr = arr.filter((a) => a.match_hometeam_score == a.match_awayteam_score)
-     let homeArr = arr.filter((a) => a.match_hometeam_name == teamSelectA)
-     let fArr = arr.filter((a) => a.match_awayteam_name == teamSelectA && a.match_awayteam_score > a.match_hometeam_score)
-     let sArr = arr.filter((a) => a.match_hometeam_name == teamSelectA && a.match_hometeam_score > a.match_awayteam_score)
-     let newArr = [...fArr, ...sArr]
-     return `${teamSelectA} has won ${newArr.length / arr.length * 100}% i.e ${newArr.length} of their last ${arr.length} matches &
-     ${sArr.length / homeArr.length * 100}% i.e ${sArr.length} of their last ${homeArr.length} home matches, also drew ${drawArr.length} of their last ${arr.length} matches
-     `
-   }
 
    const handleLeague = e => {
      e.preventDefault()
@@ -201,7 +192,9 @@ const H2H = () => {
    )
 
    const predictionMsg = () => (
-     result.length > 1 && ( <div  className="msg"><div className = "alert alert-warning error"><p><i style={{marginRight:"3px"}} class="fas fa-exclamation-triangle"></i>{prediction(result)}</p></div>
+     result.length > 1 && ( <div  className="msg"><div className = "alert alert-warning error">
+     <p><i style={{marginRight:"3px"}} class="fas fa-exclamation-triangle"></i>{prediction(result, teamSelectA)}</p>
+     </div>
      </div>)
    )
 

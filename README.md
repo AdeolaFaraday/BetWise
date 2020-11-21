@@ -1,5 +1,4 @@
 # Betwisefootball
-Betwisefootball
 
 Betwisefootball helps you query for head to head team results for provided teams,
 any team last results can also be queried for provided a valid team name.

@@ -56,16 +56,6 @@ const H2H = () => {
 		loadResults();
 	}, []);
 
-	const handleChange = (name) => (event) => {
-		setValues({
-			...values,
-			[name]: event.target.value,
-			result: [],
-			error: '',
-		});
-		spliceFunction(event.target.value, name);
-	};
-
 	// spliceFunction set a new array with teams not including the teams selected in either inputs
 	const spliceFunction = (spliceN, name) => {
 		let newArr = teamA.map((a) => a.team_name);
@@ -91,11 +81,10 @@ const H2H = () => {
 		}
 	};
 
-	const handleLeague = (e) => {
-		e.preventDefault();
+	const handleCountry = (e) => {
 		setValues({ ...values, loading: true, error: '' });
 		getLeagues({
-			countryId,
+			countryId: e.target.value,
 		}).then((data) => {
 			console.log(data);
 			if (data.error) {
@@ -107,6 +96,8 @@ const H2H = () => {
 			} else {
 				setValues({
 					...values,
+					countryId: e.target.value,
+					error: '',
 					loading: false,
 					leagues: data,
 				});
@@ -114,11 +105,10 @@ const H2H = () => {
 		});
 	};
 
-	const handleTeams = (e) => {
-		e.preventDefault();
+	const handleLeague = (e) => {
 		setValues({ ...values, loading: true, error: '' });
 		getTeams({
-			leagueSelect,
+			leagueSelect: e.target.value,
 		}).then((data) => {
 			console.log(data);
 			if (data.error) {
@@ -131,6 +121,8 @@ const H2H = () => {
 				setValues({
 					...values,
 					loading: false,
+					leagueSelect: e.target.value,
+					error: '',
 					teamA: data,
 					teamB: data,
 					teamConst: data,
@@ -139,8 +131,17 @@ const H2H = () => {
 		});
 	};
 
+	const handleTeams = (name) => (event) => {
+		setValues({
+			...values,
+			[name]: event.target.value,
+			result: [],
+			error: '',
+		});
+		spliceFunction(event.target.value, name);
+	};
+
 	const handleSubmit = (e) => {
-		e.preventDefault();
 		setValues({ ...values, loading: true, error: '' });
 		getH2hResult({
 			teamSelectA,
@@ -210,7 +211,7 @@ const H2H = () => {
 					<div class="select-league">
 						<select
 							class="browser-default custom-select select-league-name"
-							onChange={handleChange('countryId')}
+							onChange={handleCountry}
 						>
 							<option>Select Country</option>
 							{country &&
@@ -224,12 +225,9 @@ const H2H = () => {
 									</option>
 								))}
 						</select>
-						<button class="btn btn-outline-success responsive" onClick={handleLeague} name="button">
-							League
-						</button>
 						<select
 							class="browser-default custom-select select-league-name"
-							onChange={handleChange('leagueSelect')}
+							onChange={handleLeague}
 						>
 							<option>Select League</option>
 							{leagues.map((a, i) => (
@@ -242,13 +240,10 @@ const H2H = () => {
 								</option>
 							))}
 						</select>
-						<button class="btn btn-outline-success responsive" onClick={handleTeams} name="button">
-							Teams
-						</button>
 					</div>
 
 					<div class="input-area">
-						<select class="browser-default custom-select select1" onChange={handleChange('teamSelectA')}>
+						<select class="browser-default custom-select select1" onChange={handleTeams('teamSelectA')}>
 							<option>Select Team</option>
 							{teamA.map((a, i) => (
 								<option
@@ -260,7 +255,7 @@ const H2H = () => {
 								</option>
 							))}
 						</select>
-						<select class="browser-default custom-select select1" onChange={handleChange('teamSelectB')}>
+						<select class="browser-default custom-select select1" onChange={handleTeams('teamSelectB')}>
 							<option>Select Team</option>
 							{teamB.map((a, i) => (
 								<option

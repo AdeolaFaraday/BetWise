@@ -2,7 +2,7 @@ import {API} from '../config'
 
 
 export const getResults = () => {
-    return fetch(`/api`, {
+    return fetch(`http://localhost:8080/api`, {
         method: "GET"
     })
         .then(response => {
@@ -13,7 +13,7 @@ export const getResults = () => {
 
 
 export const getLeagues = (data) => {
-    return fetch(`/api/leagues`, {
+    return fetch(`http://localhost:8080/api/leagues`, {
         method: "POST",
         headers: {
             Accept: "application/json",
@@ -30,7 +30,7 @@ export const getLeagues = (data) => {
 }
 
 export const getTeams = (data) => {
-    return fetch(`/api/teams`, {
+    return fetch(`http://localhost:8080/api/teams`, {
         method: "POST",
         headers: {
             Accept: "application/json",
@@ -47,7 +47,7 @@ export const getTeams = (data) => {
 }
 
 export const getH2hResult = (data) => {
-    return fetch(`/api/h2hresult`, {
+    return fetch(`http://localhost:8080/api/h2hresult`, {
         method: "POST",
         headers: {
             Accept: "application/json",

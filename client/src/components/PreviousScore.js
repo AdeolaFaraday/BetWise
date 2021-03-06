@@ -6,11 +6,7 @@ import Layout from './Layout';
 
 const PreviousScore = () => {
 	const [values, setValues] = useState({
-<<<<<<< HEAD
 		teamName: '',
-=======
-		teamName: 'Chelsea',
->>>>>>> main
 		result: [],
 		error: '',
 		loading: false,
@@ -56,11 +52,7 @@ const PreviousScore = () => {
 			<div className="msg">
 				<div className="alert alert-danger error">
 					{' '}
-<<<<<<< HEAD
 					<p> {error} </p>
-=======
-					<p> {error}</p>
->>>>>>> main
 				</div>
 			</div>
 		);
@@ -104,10 +96,7 @@ const PreviousScore = () => {
 						<input
 							type="text"
 							className="txtb"
-<<<<<<< HEAD
 							autoFocus
-=======
->>>>>>> main
 							onChange={handleChange}
 							placeholder="Search for teams last results"
 							value={teamName}

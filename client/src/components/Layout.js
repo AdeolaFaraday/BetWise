@@ -6,11 +6,15 @@ const Layout = ({children}) => {
     <div>
     <header>
       <nav>
+<<<<<<< HEAD
       <Link to="/"><button className="btn btn-outline-warning responsive inline-b">H2H Result</button></Link>
+=======
+      <Link to="/"><button className="btn btn-outline-warning responsive inline-b">Previous Result</button></Link>
+>>>>>>> main
         <h3 class="nav-title"><i class="far fa-futbol"></i>
           BetWise
         </h3>
-        <Link to="/previous"><button className="btn btn-outline-warning responsive inline-b">Previous Result</button></Link>
+        <Link to="/h2h"><button className="btn btn-outline-warning responsive inline-b">H2H Result</button></Link>
       </nav>
     </header>
 

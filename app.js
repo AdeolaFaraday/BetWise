@@ -4,8 +4,9 @@ const app = express()
 const morgan = require('morgan')
 const cors = require('cors')
 const bodyParser = require('body-parser')
-const apiKey = require('./apiKey') || process.env.apiKey
+const apiKey = require('./apiKey')
 const request = require('request')
+const cloudConfig = process.env.apiKey
 
 app.use(morgan('dev'))
 app.use(cors())
@@ -19,7 +20,7 @@ if (process.env.NODE_ENV === "production") {
 let serverErrMsg = "Error might be due to your internet connection, or my server is down."
 
 app.get('/api', (req, res) => {
-  request(`https://apiv2.apifootball.com/?action=get_countries&APIkey=${apiKey.apiKey}`, {
+  request(`https://apiv2.apifootball.com/?action=get_countries&APIkey=${apiKey.apiKey || cloudConfig}`, {
     json: true
   }, (err, resp, body) => {
     if (err) {
@@ -33,7 +34,7 @@ app.get('/api', (req, res) => {
 
 app.post('/api/leagues', (req, res) => {
   let countryId = req.body.countryId
-  request(`https://apiv2.apifootball.com/?action=get_leagues&country_id=${countryId}&APIkey=${apiKey.apiKey}`, {
+  request(`https://apiv2.apifootball.com/?action=get_leagues&country_id=${countryId}&APIkey=${apiKey.apiKey || cloudConfig}`, {
     json: true
   }, (err, resp, body) => {
     if (err) {
@@ -53,7 +54,7 @@ app.post('/api/leagues', (req, res) => {
 
 app.post('/api/teams', (req, res) => {
   let leaguesId = req.body.leagueSelect
-  request(`https://apiv2.apifootball.com/?action=get_teams&league_id=${leaguesId}&APIkey=${apiKey.apiKey} `, {
+  request(`https://apiv2.apifootball.com/?action=get_teams&league_id=${leaguesId}&APIkey=${apiKey.apiKey || cloudConfig} `, {
     json: true
   }, (err, resp, body) => {
     if (err) {
@@ -74,7 +75,7 @@ app.post('/api/teams', (req, res) => {
 app.post('/api/h2hresult', (req, res) => {
   let firstTeam = req.body.teamSelectA
   let secondTeam = req.body.teamSelectB
-  request(`https://apiv2.apifootball.com/?action=get_H2H&firstTeam=${firstTeam}&secondTeam=${secondTeam}&APIkey=${apiKey.apiKey}`, {
+  request(`https://apiv2.apifootball.com/?action=get_H2H&firstTeam=${firstTeam}&secondTeam=${secondTeam}&APIkey=${apiKey.apiKey || cloudConfig}`, {
     json: true
   }, (err, resp, body) => {
     if (err) {

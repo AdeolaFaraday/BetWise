@@ -9,24 +9,24 @@ const Layout = ({ children }) => {
 					<nav class="header container-fluid">
 						<h3 class="nav-title">BetWise</h3>
 						<ul class="nav-ul">
-							<li class="btn btn-outline-success">
-								<Link to="/previous">Previous Result</Link>
-							</li>
-							<li class="btn btn-outline-success">
-								<Link to="/">Head to Head</Link>
-							</li>
+							<Link to="/previous">
+								<li class="btn btn-outline-success">Previous Result</li>
+							</Link>
+							<Link to="/">
+								<li class="btn btn-outline-success">Head to Head</li>
+							</Link>
 						</ul>
 						<button id="toggle-btn" class="btn btn-small btn-outline-success">
 							Open
 						</button>
 						<div class="mobile-nav-div">
 							<ul class="nav-ul-mobile">
-								<li class="btn btn-outline-success">
-									<Link to="/previous">Home</Link>
-								</li>
-								<li class="btn btn-outline-success">
-									<Link to="/">H2H</Link>
-								</li>
+								<Link to="/previous">
+									<li class="btn btn-outline-success">Previous Result</li>
+								</Link>
+								<Link to="/">
+									<li class="btn btn-outline-success">Head to Head</li>
+								</Link>
 							</ul>
 						</div>
 					</nav>

@@ -4,7 +4,7 @@ const app = express()
 const morgan = require('morgan')
 const cors = require('cors')
 const bodyParser = require('body-parser')
-const apiKey = require('./apiKey')
+const apiKey = require('./apiKey') || process.env.apiKey
 const request = require('request')
 
 app.use(morgan('dev'))
@@ -19,7 +19,6 @@ if (process.env.NODE_ENV === "production") {
 let serverErrMsg = "Error might be due to your internet connection, or my server is down."
 
 app.get('/api', (req, res) => {
-  console.log('here');
   request(`https://apiv2.apifootball.com/?action=get_countries&APIkey=${apiKey.apiKey}`, {
     json: true
   }, (err, resp, body) => {

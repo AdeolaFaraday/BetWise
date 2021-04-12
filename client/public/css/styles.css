@@ -1,22 +1,111 @@
-
 body {
-    margin: 0;
-    background-color: #738b2361;
-  }
+	margin: 0;
+	height: 100vh;
+	position: relative;
+	background-color: rgba(140, 161, 218, 0.418);
+}
+
+.header {
+	padding: 1rem;
+	background-color: rgb(25, 48, 95);
+	color: rgba(240, 255, 255, 0.877);
+}
+
+.header .nav-title,
+.nav-ul {
+	display: inline-block;
+}
+
+.header button {
+	display: none;
+}
+
+.nav-ul {
+	list-style: none;
+	float: right;
+}
+
+.nav-ul-mobile {
+	display: none;
+}
+
+.nav-ul li {
+	display: inline-block;
+	margin-left: 50px;
+}
+
+.main-div {
+	margin: 0;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.league-select,
+.country-select {
+	border: 1px solid #2e9e78c9;
+	margin: 0.5rem;
+}
+
+.input-area {
+	margin-left: 25px;
+	text-align: center;
+}
+
+.select-league-name {
+	border: 1px solid #2e9e78c9;
+	margin-bottom: 3px;
+	margin: 0.5rem;
+	width: 45%;
+}
+
+@media (max-width: 777px) {
+	.header button {
+		display: inline-block;
+		float: right;
+	}
+
+	.nav-ul {
+		display: none;
+	}
+
+	.mobile-nav-div {
+		display: none;
+		text-align: center;
+	}
+
+	.mobile-nav-div-toggle {
+		display: block;
+		transition: 0.4s;
+	}
+
+	.nav-ul-mobile {
+		display: block;
+		list-style: none;
+		padding-left: 0;
+	}
+
+	.nav-ul-mobile li {
+		padding: 15px;
+	}
+
+	.main-div {
+		margin: -22px;
+		transform: translate(-41%, -38%);
+	}
+
+	.input-area {
+		margin-left: 15px;
+	}
+
+	.select-league-name {
+		width: 40%;
+		margin: 0.3rem;
+	}
+}
+
   
-  nav {
-    width: 100%;
-    background: #238b77ad;
-    text-align: center;
-    margin-bottom: 5px;
-  }
-  
-  .nav-title {
-    text-align: center;
-    padding: 1rem;
-    color: #fff;
-    display: inline-block;
-  }
   
   .input-b {
     border-radius: 25px;
@@ -30,11 +119,6 @@ body {
     padding: 1rem 1rem 0 1rem;
     color: #fff;
   }
-  
-  .select-league {
-    width: 100%;
-    text-align: center;
-  }
 
   .txtb {
     width: 30%;
@@ -42,21 +126,10 @@ body {
     border: 2px solid #28a745;
     border-radius: 5px;
   }
-  
-  .select-league-name {
-    border: 1px solid #2e9e78c9;
-    margin-bottom: 3px;
-    width: 66%;
-  }
+ 
 
   .responsive {
     margin: 0 0 3px 2px !important;
-  }
-
-  .select1 {
-    margin-right: 3px;
-    border: 1px solid #2e9e78c9;
-    width: 20%;
   }
 
   .error, .loading {
@@ -74,9 +147,6 @@ body {
   }
   
   @media(max-width:410px) {
-    .custom-select {
-      height: calc(1.1em + 0.76rem + 2px) !important;
-    }
     .nav-title {
       padding: 16px 3px 16px 3px;
       font-size: 1.2rem;
@@ -85,9 +155,7 @@ body {
     .result {
       width: 72% !important;
     }
-    .select-league-name {
-      width: 75%;
-    }
+
     .btn {
       margin-top: 10px;
     }
@@ -103,10 +171,6 @@ body {
     .input-b {
       margin: 1rem 32%;
       display: block;
-    }
-    .select1 {
-      border: 1px solid #2e9e78c9;
-      width: 40%;
     }
   }
   

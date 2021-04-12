@@ -18,6 +18,7 @@ if (process.env.NODE_ENV === "production") {
 let serverErrMsg = "Error might be due to your internet connection, or my server is down."
 
 app.get('/api', (req, res) => {
+  console.log('here');
   request(`https://apiv2.apifootball.com/?action=get_countries&APIkey=${apiKey.apiKey}`, {
     json: true
   }, (err, resp, body) => {

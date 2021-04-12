@@ -10,10 +10,10 @@ const Layout = ({ children }) => {
 						<h3 class="nav-title">BetWise</h3>
 						<ul class="nav-ul">
 							<li class="btn btn-outline-success">
-								<Link to="/kjbn">Home</Link>
+								<Link to="/previous">Previous Result</Link>
 							</li>
 							<li class="btn btn-outline-success">
-								<Link to="/">H2H</Link>
+								<Link to="/">Head to Head</Link>
 							</li>
 						</ul>
 						<button id="toggle-btn" class="btn btn-small btn-outline-success">
@@ -22,7 +22,7 @@ const Layout = ({ children }) => {
 						<div class="mobile-nav-div">
 							<ul class="nav-ul-mobile">
 								<li class="btn btn-outline-success">
-									<Link to="/ggv">Home</Link>
+									<Link to="/previous">Home</Link>
 								</li>
 								<li class="btn btn-outline-success">
 									<Link to="/">H2H</Link>

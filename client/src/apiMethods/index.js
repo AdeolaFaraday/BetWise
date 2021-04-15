@@ -2,7 +2,7 @@ import {API} from '../config'
 
 
 export const getResults = () => {
-    return fetch(`/api`, {
+    return fetch(`http://localhost:8080/api`, {
         method: "GET"
     })
         .then(response => {

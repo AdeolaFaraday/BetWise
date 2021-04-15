@@ -208,7 +208,7 @@ const H2H = () => {
 				{isLoading()}
 				{errorMsg()}
 				{predictionMsg()}
-				<section class="main-section">
+				<section className="main-section">
 					<form className="main-div" onSubmit={handleSubmit}>
 						<div class="select-league">
 							<select class="browser-default custom-select country-select" onChange={handleCountry}>

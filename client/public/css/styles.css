@@ -120,12 +120,16 @@ body {
     color: #fff;
   }
 
-  .txtb {
+  .input-div {
+    text-align: center;
+  }
+
+  /* .txtb {
     width: 30%;
     height: 2.5rem;
     border: 2px solid #28a745;
     border-radius: 5px;
-  }
+  } */
  
 
   .responsive {
@@ -164,9 +168,9 @@ body {
       max-width: 83%;
     }
 
-    .txtb {
+    /* .txtb {
       width: 55%;
-    }
+    } */
 
     .input-b {
       margin: 1rem 32%;

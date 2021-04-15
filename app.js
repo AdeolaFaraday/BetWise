@@ -12,11 +12,7 @@ app.use(cors())
 app.use(bodyParser.json())
 
 if (process.env.NODE_ENV === "production") {
-<<<<<<< HEAD
-  app.use(express.static('client/build'))
-=======
   app.use(express.static('../client/build'))
->>>>>>> main
 }
 
 let serverErrMsg = "Error might be due to your internet connection, or my server is down."

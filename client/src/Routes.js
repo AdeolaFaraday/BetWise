@@ -8,8 +8,8 @@ const Routes = () => {
     return (
         <BrowserRouter>
             <Switch>
-                <Route path="/" exact component={PreviousScore} />
-                <Route path="/h2h" component={H2H} />
+                <Route path="/previous" exact component={PreviousScore} />
+                <Route path="/" component={H2H} />
             </Switch>
         </BrowserRouter>
     )

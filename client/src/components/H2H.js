@@ -37,6 +37,7 @@ const H2H = () => {
 
 	const loadResults = () => {
 		getResults().then((data) => {
+			console.log(data);
 			if (data.error) {
 				setValues({
 					...values,
@@ -207,74 +208,70 @@ const H2H = () => {
 				{isLoading()}
 				{errorMsg()}
 				{predictionMsg()}
-				<form onSubmit={handleSubmit}>
-					<div class="select-league">
-						<select
-							class="browser-default custom-select select-league-name"
-							onChange={handleCountry}
-						>
-							<option>Select Country</option>
-							{country &&
-								country.map((a, i) => (
+				<section className="main-section">
+					<form className="main-div" onSubmit={handleSubmit}>
+						<div class="select-league">
+							<select class="browser-default custom-select country-select" onChange={handleCountry}>
+								<option>Select Country</option>
+								{country &&
+									country.map((a, i) => (
+										<option
+											selected={a.country_id === countryId ? true : false}
+											key={i}
+											value={a.country_id}
+										>
+											{a.country_name}
+										</option>
+									))}
+							</select>
+							<select class="browser-default custom-select league-select" onChange={handleLeague}>
+								<option>Select League</option>
+								{leagues.map((a, i) => (
 									<option
-										selected={a.country_id === countryId ? true : false}
+										selected={a.league_id === leagueSelect ? true : false}
 										key={i}
-										value={a.country_id}
+										value={a.league_id}
 									>
-										{a.country_name}
+										{a.league_name}
 									</option>
 								))}
-						</select>
-						<select
-							class="browser-default custom-select select-league-name"
-							onChange={handleLeague}
-						>
-							<option>Select League</option>
-							{leagues.map((a, i) => (
-								<option
-									selected={a.league_id === leagueSelect ? true : false}
-									key={i}
-									value={a.league_id}
-								>
-									{a.league_name}
-								</option>
-							))}
-						</select>
-					</div>
+							</select>
+						</div>
 
-					<div class="input-area">
-						<select class="browser-default custom-select select1" onChange={handleTeams('teamSelectA')}>
-							<option>Select Team</option>
-							{teamA.map((a, i) => (
-								<option
-									selected={a.team_name === teamSelectA ? true : false}
-									key={i}
-									value={a.team_name}
-								>
-									{a.team_name}
-								</option>
-							))}
-						</select>
-						<select class="browser-default custom-select select1" onChange={handleTeams('teamSelectB')}>
-							<option>Select Team</option>
-							{teamB.map((a, i) => (
-								<option
-									selected={a.team_name === teamSelectB ? true : false}
-									key={i}
-									value={a.team_name}
-								>
-									{a.team_name}
-								</option>
-							))}
-						</select>
-						<button class="btn btn-outline-success" type="submit" name="button">
-							Submit
-						</button>
-					</div>
-				</form>
+						<div class="input-area">
+							<select class="browser-default custom-select select-league-name" onChange={handleTeams('teamSelectA')}>
+								<option>Select Team</option>
+								{teamA.map((a, i) => (
+									<option
+										selected={a.team_name === teamSelectA ? true : false}
+										key={i}
+										value={a.team_name}
+									>
+										{a.team_name}
+									</option>
+								))}
+							</select>
+							<select class="browser-default custom-select select-league-name" onChange={handleTeams('teamSelectB')}>
+								<option>Select Team</option>
+								{teamB.map((a, i) => (
+									<option
+										selected={a.team_name === teamSelectB ? true : false}
+										key={i}
+										value={a.team_name}
+									>
+										{a.team_name}
+									</option>
+								))}
+							</select>
+							<button class="btn btn-outline-success" type="submit" name="button">
+								Submit
+							</button>
+						</div>
+					</form>
 
-				<section class="result-section">
-					<Result results={result} />
+					<section class="result-section">
+						<Result results={result} />
+					</section>
 				</section>
 			</div>
 		);

@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { getH2hResult } from '../apiMethods';
 import { prediction } from '../util/utilFunction';
-import Result from './Sub-component/Result';
 import Layout from './Layout';
+import Result from './Sub-component/Result';
+import AutoCompleteSearch from './Sub-component/AutoCompleteSearch';
 
 const PreviousScore = () => {
 	const [values, setValues] = useState({
@@ -91,26 +92,29 @@ const PreviousScore = () => {
 				{isLoading()}
 				{errorMsg()}
 				{predictionMsg()}
-				<form>
-					<div class="select-league">
-						<input
-							type="text"
-							className="txtb"
-							autoFocus
-							onChange={handleChange}
-							placeholder="Search for teams last results"
-							value={teamName}
-						/>
-						<button
-							class="btn btn-outline-success responsive"
-							onClick={handleSubmit}
-							type="submit"
-							name="button"
-						>
-							Submit
-						</button>
-					</div>
-				</form>
+				<section class="main-section">
+					<form className="main-div">
+						<div className="input-div">
+							<input
+								type="text"
+								className="browser-default custom-select league-select"
+								autoFocus
+								onChange={handleChange}
+								placeholder="Search for teams last results"
+								value={teamName}
+							/>
+							<button
+								class="btn btn-outline-success responsive"
+								onClick={handleSubmit}
+								type="submit"
+								name="button"
+							>
+								Submit
+							</button>
+							<AutoCompleteSearch teamNames={[]} />
+						</div>
+					</form>
+				</section>
 
 				<section class="result-section">
 					<Result results={result} />

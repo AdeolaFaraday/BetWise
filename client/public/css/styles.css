@@ -181,7 +181,7 @@ body {
   .footer {
     width: 100%;
     text-align: center;
-    background-color: #238b77ad;
+    background-color: rgb(25, 48, 95);
     position: fixed;
     bottom: 0;
   }

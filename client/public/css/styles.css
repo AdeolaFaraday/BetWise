@@ -5,10 +5,16 @@ body {
 	background-color: rgba(140, 161, 218, 0.418);
 }
 
+/* font-family: 'Kanit', sans-serif;
+font-family: 'Russo One', sans-serif;
+font-family: 'Zen Dots', cursive; */
+
 .header {
 	padding: 1rem;
 	background-color: rgb(25, 48, 95);
 	color: rgba(240, 255, 255, 0.877);
+	font-family: 'Russo One', sans-serif;
+	font-weight: bold;
 }
 
 .header .nav-title,
@@ -44,7 +50,7 @@ body {
 
 .league-select,
 .country-select {
-	border: 1px solid #2e9e78c9;
+	border: 1px solid rgb(25, 48, 95);
 	margin: 0.5rem;
 }
 
@@ -54,11 +60,24 @@ body {
 }
 
 .select-league-name {
-	border: 1px solid #2e9e78c9;
+	border: 1px solid rgb(25, 48, 95);
 	margin-bottom: 3px;
 	margin: 0.5rem;
 	width: 45%;
 }
+
+/* .modal-bg {
+	margin: 0;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	z-index: 2;
+}
+
+.modal-toggle {
+	display: none;
+} */
 
 @media (max-width: 777px) {
 	.header button {
@@ -87,7 +106,8 @@ body {
 	}
 
 	.nav-ul-mobile li {
-		padding: 15px;
+		padding: 7px;
+		margin-left: 10px;
 	}
 
 	.main-div {
@@ -100,116 +120,116 @@ body {
 	}
 
 	.select-league-name {
-		width: 40%;
+		width: 44%;
 		margin: 0.3rem;
 	}
 }
 
-  
-  
-  .input-b {
-    border-radius: 25px;
-    margin: 1rem 45%;
-    display: block;
-  }
-  
-  
-  .input-area {
-    text-align: center;
-    padding: 1rem 1rem 0 1rem;
-    color: #fff;
-  }
+.input-b {
+	border-radius: 25px;
+	margin: 1rem 45%;
+	display: block;
+}
 
-  .input-div {
-    text-align: center;
-  }
+.input-area {
+	text-align: center;
+	padding: 1rem 1rem 0 1rem;
+	color: #fff;
+}
 
-  /* .txtb {
+.input-div {
+	text-align: center;
+}
+
+/* .txtb {
     width: 30%;
     height: 2.5rem;
     border: 2px solid #28a745;
     border-radius: 5px;
   } */
- 
 
-  .responsive {
-    margin: 0 0 3px 2px !important;
-  }
+.responsive {
+	margin: 0 0 3px 2px !important;
+}
 
-  .error, .loading {
-    margin: auto;
-    text-align: center;
-    max-width: 30%;
-  }
+.error,
+.loading {
+	margin: auto;
+	text-align: center;
+	max-width: 30%;
+}
 
-  .msg {
-    padding: 1rem;
-  }
+.msg {
+	padding: 1rem;
+}
 
-  .error p {
-    margin-bottom: 0;
-  }
-  
-  @media(max-width:410px) {
-    .nav-title {
-      padding: 16px 3px 16px 3px;
-      font-size: 1.2rem;
-      display: inline-block;
-    }
-    .result {
-      width: 72% !important;
-    }
+.error p {
+	margin-bottom: 0;
+}
 
-    .btn {
-      margin-top: 10px;
-    }
-  
-    .error {
-      max-width: 83%;
-    }
+@media (max-width: 410px) {
+	.nav-title {
+		padding: 16px 3px 16px 3px;
+		font-size: 1.2rem;
+		display: inline-block;
+	}
+	.result {
+		width: 72% !important;
+	}
 
-    /* .txtb {
+	.btn {
+		margin-top: 10px;
+	}
+
+	.error {
+		max-width: 83%;
+	}
+
+	/* .txtb {
       width: 55%;
     } */
 
-    .input-b {
-      margin: 1rem 32%;
-      display: block;
-    }
-  }
-  
-  .footer {
-    width: 100%;
-    text-align: center;
-    background-color: rgb(25, 48, 95);
-    position: fixed;
-    bottom: 0;
-  }
-  
-  .result-section {
-    width: 100%;
-  
-  }
-  
-  .result {
-    margin: 1rem auto 1rem auto;
-    box-shadow: 0 2px 5px 0 #2e9e78c9;
-    width: 65%;
-    padding: 12px 0;
-    background-color: #fff;
-    border-radius: 20px;
-    text-align: center;
-  }
-  
-  .result .team {
-    font-weight: bold !important;
-    font-family: inherit;
-  }
-  
-  .result p {
-    color: grey;
-    margin: 2px;
-    display: inline-block;
-    margin-bottom: 0;
-  }
-  
+	.input-b {
+		margin: 1rem 32%;
+		display: block;
+	}
+}
+
+.footer {
+	width: 100%;
+	padding: 15px;
+	font-family: 'Kanit', sans-serif;
+	font-weight: bold;
+	color: #2e9e78c9;
+	text-align: center;
+	background-color: rgb(25, 48, 95);
+	position: fixed;
+	bottom: 0;
+}
+
+.result-section {
+	width: 100%;
+	z-index: 2;
+}
+
+.result {
+	margin: 1rem auto 1rem auto;
+	box-shadow: 0 2px 5px 0 #2e9e78c9;
+	width: 65%;
+	padding: 12px 0;
+	background-color: #fff;
+	border-radius: 20px;
+	text-align: center;
+}
+
+.result .team {
+	font-weight: bold !important;
+	font-family: inherit;
+}
+
+.result p {
+	color: grey;
+	margin: 2px;
+	display: inline-block;
+	margin-bottom: 0;
+}

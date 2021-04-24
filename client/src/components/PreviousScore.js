@@ -7,13 +7,14 @@ import AutoCompleteSearch from './Sub-component/AutoCompleteSearch';
 
 const PreviousScore = () => {
 	const [values, setValues] = useState({
-		teamName: '',
+		teamName: 'Manchester United',
 		result: [],
 		error: '',
 		loading: false,
+		isModal: true,
 	});
 
-	const { teamName, result, error, loading } = values;
+	const { teamName, result, error, loading, isModal } = values;
 
 	const handleChange = (event) => {
 		setValues({
@@ -43,6 +44,7 @@ const PreviousScore = () => {
 					...values,
 					loading: false,
 					result: data.firstTeam_lastResults,
+					isModal: false,
 				});
 			}
 		});
@@ -92,31 +94,42 @@ const PreviousScore = () => {
 				{isLoading()}
 				{errorMsg()}
 				{predictionMsg()}
-				<section class="main-section">
-					<form className="main-div">
-						<div className="input-div">
-							<input
-								type="text"
-								className="browser-default custom-select league-select"
-								autoFocus
-								onChange={handleChange}
-								placeholder="Search for teams last results"
-								value={teamName}
-							/>
-							<button
-								class="btn btn-outline-success responsive"
-								onClick={handleSubmit}
-								type="submit"
-								name="button"
-							>
-								Submit
-							</button>
-							<AutoCompleteSearch teamNames={[]} />
-						</div>
-					</form>
-				</section>
+				{isModal && (
+					<section class="main-section">
+						<form className="main-div">
+							<div className="input-div">
+								<input
+									type="text"
+									className="browser-default custom-select league-select"
+									autoFocus
+									onChange={handleChange}
+									placeholder="Search for teams last results"
+									value={teamName}
+								/>
+								<button
+									class="btn btn-outline-success responsive"
+									onClick={handleSubmit}
+									type="submit"
+									name="button"
+								>
+									Submit
+								</button>
+								<AutoCompleteSearch teamNames={[]} />
+							</div>
+						</form>
+					</section>
+				)}
 
 				<section class="result-section">
+					{result.length > 0 && (
+						<div
+							className="msg error"
+							style={{fontWeight: 'bold'}}
+							onClick={() => setValues({ ...values, isModal: true, loading: false, error: '', result: [] })}
+						>
+							Retry
+						</div>
+					)}
 					<Result results={result} />
 				</section>
 			</div>

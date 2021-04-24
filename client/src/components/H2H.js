@@ -17,6 +17,7 @@ const H2H = () => {
 		teamSelectA: '',
 		teamSelectB: '',
 		error: '',
+		isModal: true,
 		loading: false,
 	});
 
@@ -27,6 +28,7 @@ const H2H = () => {
 		teamA,
 		teamB,
 		error,
+		isModal,
 		loading,
 		leagueSelect,
 		teamSelectA,
@@ -159,6 +161,7 @@ const H2H = () => {
 					...values,
 					loading: false,
 					result: data.firstTeam_lastResults,
+					isModal: false,
 				});
 			}
 		});
@@ -209,7 +212,7 @@ const H2H = () => {
 				{errorMsg()}
 				{predictionMsg()}
 				<section className="main-section">
-					<form className="main-div" onSubmit={handleSubmit}>
+					{isModal && (<form className="main-div" onSubmit={handleSubmit}>
 						<div class="select-league">
 							<select class="browser-default custom-select country-select" onChange={handleCountry}>
 								<option>Select Country</option>
@@ -267,9 +270,18 @@ const H2H = () => {
 								Submit
 							</button>
 						</div>
-					</form>
+					</form>)}
 
 					<section class="result-section">
+					{result.length > 0 && (
+						<div
+							className="msg error"
+							style={{fontWeight: 'bold'}}
+							onClick={() => setValues({ ...values, isModal: true, loading: false, error: '', result: [] })}
+						>
+							Retry
+						</div>
+					)}
 						<Result results={result} />
 					</section>
 				</section>

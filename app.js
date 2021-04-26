@@ -110,9 +110,11 @@ app.post('/api/h2hresult', (req, res) => {
 	);
 });
 
-app.get('/teamNames/:teamName', (req, res) => {
+app.get('/api/teamNames/:teamName', (req, res) => {
 	const teamName = req.params.teamName;
-	const matchedTeamNames = teamName.filter((team) => team === teamName);
+	const matchedTeamNames = teamsArr.filter((t) => {
+		return t == t.match(new RegExp(`^${teamName}.*`, 'i'));
+	});
 	return res.json(matchedTeamNames);
 });
 

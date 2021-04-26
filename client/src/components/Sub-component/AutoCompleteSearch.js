@@ -1,10 +1,10 @@
 import React from 'react';
 
-const AutoCompleteSearch = ({ teamNames }) => {
+const AutoCompleteSearch = ({ autoSuggest, teamNames }) => {
 	return (
-		<div  className="overflow-auto bg-light">
+		<div className="overflow-auto bg-light">
 			{teamNames.map((teamName) => {
-				return (<div  className="result">{teamName}</div>)
+				return <li onClick={(e) => autoSuggest(e.target.textContent)}>{teamName}</li>;
 			})}
 		</div>
 	);

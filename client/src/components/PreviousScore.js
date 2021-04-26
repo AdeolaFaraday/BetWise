@@ -3,18 +3,22 @@ import { getH2hResult } from '../apiMethods';
 import { prediction } from '../util/utilFunction';
 import Layout from './Layout';
 import Result from './Sub-component/Result';
+import { exportedTeamsArray } from './Sub-component/teamArray';
 import AutoCompleteSearch from './Sub-component/AutoCompleteSearch';
 
 const PreviousScore = () => {
 	const [values, setValues] = useState({
-		teamName: 'Manchester United',
+		teamName: '',
+		teamsArr: exportedTeamsArray,
 		result: [],
 		error: '',
 		loading: false,
 		isModal: true,
 	});
 
-	const { teamName, result, error, loading, isModal } = values;
+	const [suggestedTeams, setSuggestedTeams] = useState([]);
+
+	const { teamName, teamsArr, result, error, loading, isModal } = values;
 
 	const handleChange = (event) => {
 		setValues({
@@ -23,9 +27,11 @@ const PreviousScore = () => {
 			result: [],
 			error: '',
 		});
+		getAutoSuggestNames(event.target.value);
 	};
 
 	const handleSubmit = (e) => {
+		console.log(e.target.value);
 		e.preventDefault();
 		setValues({ ...values, loading: true, error: '' });
 		getH2hResult({
@@ -48,6 +54,13 @@ const PreviousScore = () => {
 				});
 			}
 		});
+	};
+
+	const getAutoSuggestNames = (teamName) => {
+		const matchedTeamNames = teamsArr.filter((t) => {
+			return t == t.match(new RegExp(`^${teamName}.*`, 'i'));
+		});
+		setSuggestedTeams(matchedTeamNames);
 	};
 
 	const errorMsg = () =>
@@ -88,6 +101,16 @@ const PreviousScore = () => {
 			</div>
 		);
 
+	const passAutoSuggest = (teamName) => {
+		console.log(teamName);
+		setValues({
+			...values,
+			teamName,
+			result: [],
+			error: '',
+		});
+	};
+
 	const Previous = () => {
 		return (
 			<div>
@@ -95,37 +118,40 @@ const PreviousScore = () => {
 				{errorMsg()}
 				{predictionMsg()}
 				{isModal && (
-					<section class="main-section">
-						<form className="main-div">
-							<div className="input-div">
+					<form onSubmit={handleSubmit}>
+						<div class="wrapper">
+							<div class="search-input">
+								{/* <a href="" target="_blank" hidden></a> */}
 								<input
 									type="text"
-									className="browser-default custom-select league-select"
 									autoFocus
 									onChange={handleChange}
 									placeholder="Search for teams last results"
 									value={teamName}
 								/>
-								<button
-									class="btn btn-outline-success responsive"
-									onClick={handleSubmit}
-									type="submit"
-									name="button"
-								>
-									Submit
-								</button>
-								<AutoCompleteSearch teamNames={[]} />
+								<div class="autocom-box">
+									{suggestedTeams.length > 0 && teamName != '' && (
+										<AutoCompleteSearch autoSuggest={passAutoSuggest} teamNames={suggestedTeams} />
+									)}
+								</div>
+								<div class="icon">
+									<button class="btn btn-outline-success btn-sm" type="submit">
+										Search
+									</button>
+								</div>
 							</div>
-						</form>
-					</section>
+						</div>
+					</form>
 				)}
 
 				<section class="result-section">
 					{result.length > 0 && (
 						<div
 							className="msg error"
-							style={{fontWeight: 'bold'}}
-							onClick={() => setValues({ ...values, isModal: true, loading: false, error: '', result: [] })}
+							style={{ fontWeight: 'bold' }}
+							onClick={() =>
+								setValues({ ...values, isModal: true, loading: false, error: '', result: [] })
+							}
 						>
 							Retry
 						</div>

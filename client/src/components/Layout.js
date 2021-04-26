@@ -7,7 +7,9 @@ const Layout = ({ children }) => {
 			<section>
 				<header>
 					<nav class="header container-fluid">
-						<h3 class="nav-title">BetWise</h3>
+						<Link to="/previous">
+							<h3 class="nav-title" style={{color: '#fff'}}>BetWise</h3>
+						</Link>
 						<ul class="nav-ul">
 							<Link to="/previous">
 								<li class="btn btn-outline-success">Previous Result</li>

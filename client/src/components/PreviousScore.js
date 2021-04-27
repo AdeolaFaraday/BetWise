@@ -109,6 +109,7 @@ const PreviousScore = () => {
 			result: [],
 			error: '',
 		});
+		setSuggestedTeams([]);
 	};
 
 	const Previous = () => {

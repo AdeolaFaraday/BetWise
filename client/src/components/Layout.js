@@ -4,11 +4,13 @@ import { Link } from 'react-router-dom';
 const Layout = ({ children }) => {
 	return (
 		<div>
-			<section>
+			<section style={{ position: 'relative', minHeight: '98vh' }}>
 				<header>
 					<nav class="header container-fluid">
-						<Link to="/previous">
-							<h3 class="nav-title" style={{color: '#fff'}}>BetWise</h3>
+						<Link to="/">
+							<h3 class="nav-title" style={{ color: '#fff' }}>
+								BetWise
+							</h3>
 						</Link>
 						<ul class="nav-ul">
 							<Link to="/previous">
@@ -33,9 +35,8 @@ const Layout = ({ children }) => {
 						</div>
 					</nav>
 				</header>
+				<div>{children}</div>
 			</section>
-
-			<div>{children}</div>
 
 			<section>
 				<footer class="footer">

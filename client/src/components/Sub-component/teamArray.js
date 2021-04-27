@@ -33,6 +33,8 @@ export const exportedTeamsArray = [
 	'Celta Vigo',
 	'Juventus',
 	'Atalanta',
+	'Lazio',
+	'AS Roma',
 	'Napoli',
 	'Benevento',
 	'Cagliari',

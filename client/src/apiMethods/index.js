@@ -1,5 +1,6 @@
 import { API } from '../config';
 
+
 export const getResults = () => {
 	return fetch(`/api`, {
 		method: 'GET',
